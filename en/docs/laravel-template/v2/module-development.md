@@ -91,6 +91,37 @@ If you want to add a new section, you can add the following code to the Laravel-
 @endforelse
 ```
 
+## Spotlight Search
+To add a new search result to the spotlight search, you can add the following code to your module service provider:
+
+```php
+    /**
+     * Boot the application events.
+     */
+    public function boot(): void
+    {
+        app('spotlight.values')->add([
+            [
+                'name' => 'Some Page',
+                'description' => 'Some Description',
+                'route' => 'some.route',
+                'icon' => Blade::render('<i class="icon-bell text-3xl"></i>'), // All icons can be found here: https://lucide.dev/
+                'admin' => true, // Only shows if the user has the "Super Admin" role
+            ],
+
+            [
+                'name' => 'Some Page 2',
+                'description' => 'Some Description 2',
+                'route' => 'some.route2',
+                'icon' => Blade::render('<i class="icon-bell-ring text-3xl"></i>'), // All icons can be found here: https://lucide.dev/
+                'admin' => false,
+            ],
+        ]);
+    }
+
+
+```
+
 ## Custom Settings page
 
 If your module needs a settings page, you can add a route with following name: `modules.<ModuleName>.settings`.
